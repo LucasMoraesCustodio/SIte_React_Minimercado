@@ -8,12 +8,14 @@ function App() {
   const totalSales = 10000;
   const numSales = 500;
   const salesPoints = [
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 }
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV B', status: 'Ativo', stockSituation: '70%', totalSales: 2000 }
   ];
   return (
-    <div className="app">
+    <div className="App">
       <Header />
       <Overview totalSales={totalSales} numSales={numSales} />
+      <hr></hr>
       {salesPoints.map((point, index) => (
         <SalesPoint key={index} {...point} />
       ))}

@@ -1,3 +1,6 @@
+import React from 'react';
+import './SalesPoint.css';
+
 const SalesPoint = ({ name, status, stockSituation, totalSales }) => {
     return (
       <div className="sales-point">
@@ -5,7 +8,6 @@ const SalesPoint = ({ name, status, stockSituation, totalSales }) => {
         <p>Status: {status}</p>
         <p>Situação estoque: {stockSituation}</p>
         <p>Total de vendas: R$ {totalSales}</p>
-        {/* Botões para acessar ou configurar o PDV */}
       </div>
     );
   };
