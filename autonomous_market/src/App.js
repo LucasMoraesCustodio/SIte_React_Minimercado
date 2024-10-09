@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Overview from './components/Overview.js';
+import Footer from './components/Footer.js';
+import Header from './components/Header.js';
+import SalesPoint from './components/SalesPoint.js';
 
 function App() {
+  const totalSales = 10000;
+  const numSales = 500;
+  const salesPoints = [
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 }
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <Overview totalSales={totalSales} numSales={numSales} />
+      {salesPoints.map((point, index) => (
+        <SalesPoint key={index} {...point} />
+      ))}
+      <Footer />
     </div>
   );
 }
