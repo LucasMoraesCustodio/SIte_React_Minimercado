@@ -1,5 +1,7 @@
 import React from 'react';
 import './Overview.css';
+import {Chart  as ChartJS} from  "chart.js/auto";
+import {Bar, Line} from "react-chartjs-2"; 
 
 const Overview = ({ totalSales, numSales }) => {
     return (
@@ -8,15 +10,45 @@ const Overview = ({ totalSales, numSales }) => {
         <div className="graficos"> 
             <div className = "grafico">
                 <p>Total de vendas: R$ {totalSales}</p>
-                <img src="https://via.placeholder.com/300x200" alt="Grafico vendas" />
+                <Line
+                  data = {{
+                    labels: ["Janeiro","fevereiro","Março"],
+                    datasets: [
+                      {
+                        label: "Receita",
+                        data: [350, 300, 400],
+                      }
+                    ]
+                  }}
+                />
             </div>
             <div className = "grafico">
                 <p>Nº de vendas: {numSales}</p>
-                <img src="https://via.placeholder.com/300x200" alt="Grafico n vendas" />
+                <Bar
+                  data = {{
+                    labels: ["macarrão", "açucar", "arroz"],
+                    datasets: [
+                      {
+                        label: "produtos",
+                        data: [350, 300, 400],
+                      }
+                    ]
+                  }}
+                />
             </div>
             <div className = "grafico">
                 <p>Produtos mais vendidos</p>
-                <img src="https://via.placeholder.com/200x200" alt="Grafico produtos" className="rounded-image"/>
+                <Bar
+                  data = {{
+                    labels: ["macarrão", "açucar", "arroz"],
+                    datasets: [
+                      {
+                        label: "produtos",
+                        data: [350, 300, 400],
+                      }
+                    ]
+                  }}
+                />
             </div>
         </div>
       </section>
