@@ -1,18 +1,19 @@
 /* Overview.css */
 .overview {
-  padding: 20px;
-  background-color: #f5f5f5;
+  margin: 20px;
 }
 
-.graficos{
+.graficos {
   display: flex;
   flex-direction: row;
+  width: 100%; 
+  justify-content: space-between; 
 }
 
-.grafico{
-  padding-right: 20px;
+.grafico {
   display: flex;
   flex-direction: column;
+  padding-right: 30px; /* Adiciona padding de 30px à direita dos gráficos */
 }
 
 img {
@@ -33,4 +34,3 @@ p {
   font-size: 16px;
   margin: 5px 0;
 }
-  

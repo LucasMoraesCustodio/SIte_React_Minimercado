@@ -9,13 +9,19 @@ function App() {
   const numSales = 500;
   const salesPoints = [
     { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '90%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '80%', totalSales: 2000 },
     { name: 'PDV B', status: 'Ativo', stockSituation: '70%', totalSales: 2000 }
   ];
   return (
     <div className="App">
       <Header />
+      <h2>Visão geral</h2>
       <Overview totalSales={totalSales} numSales={numSales} />
-      <hr></hr>
+      <hr/>
+      <h2>PDVs</h2>
       {salesPoints.map((point, index) => (
         <SalesPoint key={index} {...point} />
       ))}

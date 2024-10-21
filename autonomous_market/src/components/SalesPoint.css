@@ -1,7 +1,8 @@
 /* SalesPoint.css */
 .sales-point {
-    background-color: #fff;
-    padding: 10px;
-    margin: 10px;
-  }
-  
+  margin: 20px;
+  padding: 10px 20px 20px 20px; /* Adiciona padding para dar espaço interno */
+  background-color: #fff; /* Define um fundo branco para destacar a sombra */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao redor do elemento */
+  border-radius: 8px; /* Adiciona bordas arredondadas */
+}
