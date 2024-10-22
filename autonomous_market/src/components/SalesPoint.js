@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './SalesPoint.css';
 
 const SalesPoint = ({ name, status, stockSituation, totalSales }) => {
@@ -8,8 +9,11 @@ const SalesPoint = ({ name, status, stockSituation, totalSales }) => {
         <p>Status: {status}</p>
         <p>Situação estoque: {stockSituation}</p>
         <p>Total de vendas: R$ {totalSales}</p>
+        <Link to="/detalhes">
+          <button className="details-button">Ver detalhes</button>
+        </Link>
       </div>
     );
   };
-
-export default SalesPoint
+  
+export default SalesPoint;

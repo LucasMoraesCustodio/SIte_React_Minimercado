@@ -1,8 +1,30 @@
 /* SalesPoint.css */
 .sales-point {
   margin: 20px;
-  padding: 10px 20px 20px 20px; /* Adiciona padding para dar espaço interno */
+  padding: 10px 20px 20px 20px; /* Define padding: 10px no topo, 20px à direita, 20px embaixo e 20px à esquerda */
   background-color: #fff; /* Define um fundo branco para destacar a sombra */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra ao redor do elemento */
   border-radius: 8px; /* Adiciona bordas arredondadas */
+  position: relative; /* Necessário para posicionar o botão no canto inferior direito */
+}
+
+.sales-point h3 {
+  padding-top: 10px; /* Adiciona padding de 10px no topo do h3 */
+}
+
+.details-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
 }

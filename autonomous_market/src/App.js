@@ -1,8 +1,9 @@
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import Overview from './components/Overview.js';
-import Footer from './components/Footer.js';
-import Header from './components/Header.js';
-import SalesPoint from './components/SalesPoint.js';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import RouterConfig from './Router';
 
 function App() {
   const totalSales = 10000;
@@ -11,22 +12,21 @@ function App() {
     { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
     { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
     { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '90%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '80%', totalSales: 2000 },
-    { name: 'PDV B', status: 'Ativo', stockSituation: '70%', totalSales: 2000 }
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
+    { name: 'PDV B', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
   ];
+
   return (
-    <div className="App">
-      <Header />
-      <h2>Visão geral</h2>
-      <Overview totalSales={totalSales} numSales={numSales} />
-      <hr/>
-      <h2>PDVs</h2>
-      {salesPoints.map((point, index) => (
-        <SalesPoint key={index} {...point} />
-      ))}
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <RouterConfig totalSales={totalSales} numSales={numSales} salesPoints={salesPoints} />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
