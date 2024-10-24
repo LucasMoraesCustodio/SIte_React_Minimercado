@@ -4,8 +4,10 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import RouterConfig from './Router';
+import { clarity } from 'react-microsoft-clarity';
 
 function App() {
+  clarity.init('ondpa71rp3');
   const totalSales = 10000;
   const numSales = 500;
   const salesPoints = [
