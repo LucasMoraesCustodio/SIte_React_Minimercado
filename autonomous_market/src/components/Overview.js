@@ -1,6 +1,5 @@
 import React from 'react';
 import './Overview.css';
-import {Chart  as ChartJS} from  "chart.js/auto";
 import {Bar, Line} from "react-chartjs-2"; 
 
 const Overview = ({ totalSales, numSales }) => {
