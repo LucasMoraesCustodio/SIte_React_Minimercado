@@ -5,10 +5,10 @@ const Footer = () => {
     return (
       <footer>
         <nav>
-          <a href="">Minimercados</a>
-          <a href="">Termos de Serviço</a>
-          <a href="">Contatos</a>
-          <a href="">Privacidade</a>
+          <a >Minimercados</a>
+          <a >Termos de Serviço</a>
+          <a >Contatos</a>
+          <a >Privacidade</a>
         </nav>
       </footer>
     );
