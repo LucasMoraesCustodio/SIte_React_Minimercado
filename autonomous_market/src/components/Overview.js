@@ -1,6 +1,18 @@
 import React from 'react';
 import './Overview.css';
-import {Bar, Line} from "react-chartjs-2"; 
+import { Bar, Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Overview = ({ totalSales, numSales }) => {
     const data = {
