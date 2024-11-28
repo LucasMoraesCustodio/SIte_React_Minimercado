@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 
 import { getAnalytics } from "firebase/analytics";
 
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -33,7 +35,8 @@ export const firebaseConfig = {
 
 
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app); // Remover esta linha se não precisar de Analytics
+const db = getFirestore(app);
 
-const analytics = getAnalytics(app);
+export { app, db };

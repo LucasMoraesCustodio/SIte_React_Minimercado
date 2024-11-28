@@ -3,39 +3,41 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import RouterConfig from './Router';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-//import { clarity } from 'react-microsoft-clarity';
+import { app, db } from './firebaseConfig';
+import { collection, getDocs } from "firebase/firestore";
 
 function App() {
-  //clarity.init('ondpa71rp3');
   const [user, setUser] = useState(null);
+  const [salesPoints, setSalesPoints] = useState([]);
   const companyName = "Nome da Empresa";
   const totalSales = 10000;
   const numSales = 500;
-  const salesPoints = [
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV B', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-  ];
+  const companyId = "companyId"; // Adicionar a referência para o documento da empresa
 
   useEffect(() => {
-    const auth = getAuth();
+    const auth = getAuth(app);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in
         setUser(user);
       } else {
-        // User is signed out
         setUser(null);
       }
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchSalesPoints = async () => {
+      const querySnapshot = await getDocs(collection(db, "salesPoints"));
+      const points = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setSalesPoints(points);
+    };
+
+    fetchSalesPoints();
   }, []);
 
   return (
@@ -47,7 +49,8 @@ function App() {
           salesPoints={salesPoints} 
           companyName={companyName} 
           user={user} 
-          setUser={setUser} // Passar a função setUser
+          setUser={setUser}
+          companyId={companyId} // Passar a referência para o documento da empresa
         />
       </div>
     </Router>

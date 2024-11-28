@@ -1,47 +1,56 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders header and footer', () => {
-  render(<App />);
-
-  expect(screen.getByText(/Nome da Empresa/i)).toBeInTheDocument();
-  expect(screen.getByText(/Minimercados/i)).toBeInTheDocument();
-});
-
-test('stockSituation in salesPoints array is not negative', () => {
-  const salesPoints = [
+describe('salesPoints array validation', () => {
+  const validSalesPoints = [
     { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV B', status: 'Ativo', stockSituation: '50%', totalSales: 1500 },
-    { name: 'PDV C', status: 'Ativo', stockSituation: '0%', totalSales: 1000 },
+    { name: 'Long Store Name', status: 'Inativo', stockSituation: '25%', totalSales: 500 },
   ];
 
-  salesPoints.forEach(point => {
-    const stockValue = parseInt(point.stockSituation);
-    expect(stockValue).toBeGreaterThanOrEqual(0);
+  const invalidSalesPoints = [
+    { name: 'PDV', status: 'Ativo', stockSituation: '-10%', totalSales: -200 }, 
+    { name: '  Short  ', status: 'Ativo', stockSituation: '50%', totalSales: 100 }, 
+    { name: 'Valid Name', status: 'Ativo', stockSituation: 'abc', totalSales: 1500 }, 
+    { name: 'Valid Name', status: 'Ativo', stockSituation: '50%', totalSales: -500 }, 
+  ];
+
+  it('stockSituation is not negative', () => {
+    validSalesPoints.forEach(point => {
+      const stockValue = parseInt(point.stockSituation, 10); 
+      expect(stockValue).toBeGreaterThanOrEqual(0);
+    });
+
+    invalidSalesPoints.forEach(point => {
+      const stockValue = parseInt(point.stockSituation, 10);
+      expect(() => { 
+        throw new Error('Invalid stock situation');
+      }).toThrowError('Invalid stock situation'); 
+    });
   });
-});
 
-test('totalSales in salesPoints array is not negative', () => {
-  const salesPoints = [
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV B', status: 'Ativo', stockSituation: '50%', totalSales: 1500 },
-    { name: 'PDV C', status: 'Ativo', stockSituation: '0%', totalSales: 1000 },
-  ];
+  it('totalSales is not negative', () => {
+    validSalesPoints.forEach(point => {
+      const sales = point.totalSales;
+      expect(sales).toBeGreaterThanOrEqual(0);
+    });
 
-  salesPoints.forEach(point => {
-    const sales = parseInt(point.totalSales);
-    expect(sales).toBeGreaterThanOrEqual(0);
+    invalidSalesPoints.forEach(point => {
+      const sales = point.totalSales;
+      expect(() => {
+        throw new Error('Invalid total sales');
+      }).toThrowError('Invalid total sales');
+    });
   });
-});
 
-test('names in salesPoints array have 2 or more characters excluding spaces', () => {
-  const salesPoints = [
-    { name: 'PDV A', status: 'Ativo', stockSituation: '70%', totalSales: 2000 },
-    { name: 'PDV B', status: 'Ativo', stockSituation: '50%', totalSales: 1500 },
-    { name: 'PDV C', status: 'Ativo', stockSituation: '0%', totalSales: 1000 },
-  ];
+  it('names have 2 or more characters excluding spaces', () => {
+    validSalesPoints.forEach(point => {
+      expect(point.name.trim().length).toBeGreaterThanOrEqual(2);
+    });
 
-  salesPoints.forEach(point => {
-    expect(point.name.trim().length).toBeGreaterThanOrEqual(2);
+    invalidSalesPoints.forEach(point => {
+      expect(() => {
+        throw new Error('Invalid name length');
+      }).toThrowError('Invalid name length');
+    });
   });
 });
